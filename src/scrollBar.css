@@ -1,0 +1,71 @@
+/* Modern Scrollbar Styles */
+:root {
+    --scrollbar-track-color: transparent;
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+    --scrollbar-width: 8px;
+    --scrollbar-height: 8px;
+    --scrollbar-minlen: 30px;
+  }
+  
+  /* Dark mode variables */
+  [data-theme='dark'], .dark {
+    --scrollbar-thumb-color: rgba(255, 255, 255, 0.2);
+    --scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+  }
+  
+  /* WebKit/Chromium scrollbar */
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-height);
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+    border-radius: var(--scrollbar-width);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: var(--scrollbar-width);
+    min-height: var(--scrollbar-minlen);
+    min-width: var(--scrollbar-minlen);
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+  }
+  
+  /* Hide scrollbar while not scrolling */
+  ::-webkit-scrollbar-thumb {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  /* Show scrollbar when hovering or scrolling */
+  :hover::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Corner where vertical and horizontal scrollbars meet */
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  /* Optional: Hide scrollbar on mobile devices */
+  @media (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+  }

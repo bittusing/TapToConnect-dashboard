@@ -1,0 +1,81 @@
+/* SelectGroupAntd.css */
+.custom-antd-select {
+    font-size: 0.875rem !important;
+  }
+  
+  .custom-antd-select .ant-select-selector {
+    height: 100% !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .custom-antd-select.ant-select-disabled .ant-select-selector {
+    background-color: #f3f4f6 !important;
+    color: #9ca3af !important;
+  }
+  
+  .custom-antd-select .ant-select-selection-item {
+    line-height: normal !important;
+  }
+  
+  .custom-select-wrapper .ant-select-focused .ant-select-selector {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  .custom-select-wrapper .ant-select-open .ant-select-selector {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  /* Dark mode support */
+  .dark .custom-antd-select .ant-select-selector {
+    background-color: #374151 !important;
+    color: #e5e7eb !important;
+  }
+  
+  .dark .custom-antd-select.ant-select-disabled .ant-select-selector {
+    background-color: #1f2937 !important;
+    color: #6b7280 !important;
+  }
+  
+  .dark .ant-select-dropdown {
+    background-color: #1f2937 !important;
+    color: #e5e7eb !important;
+  }
+  
+  .dark .ant-select-item {
+    color: #e5e7eb !important;
+  }
+  
+  .dark .ant-select-item-option-selected {
+    background-color: #374151 !important;
+  }
+  
+  .dark .ant-select-item-option-active {
+    background-color: #4b5563 !important;
+  }
+  
+  /* Search styles */
+  .ant-select-dropdown .ant-select-item {
+    padding: 10px 12px !important;
+  }
+  
+  .ant-select-dropdown .ant-select-item-option-content {
+    font-size: 0.875rem !important;
+  }
+  
+  /* Optgroup styling */
+  .ant-select-dropdown .ant-select-item-group {
+    font-weight: 500 !important;
+    color: #111827 !important;
+    padding: 8px 12px !important;
+  }
+  
+  .dark .ant-select-dropdown .ant-select-item-group {
+    color: #f9fafb !important;
+  }
