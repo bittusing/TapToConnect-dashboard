@@ -548,7 +548,7 @@ export const getPartnerAssignedTags = async (
       shortCode: itemObj.shortCode as string,
       shortUrl: itemObj.shortUrl as string | undefined,
       qrUrl: itemObj.qrUrl as string | undefined,
-      status: (itemObj.status as TagStatus | undefined) ?? "generated",
+      status: (itemObj.status as (string | undefined)) ?? "generated",
       batchName: itemObj.batchName as string | undefined,
       assignedTo: itemObj.assignedTo,
       ownerAssignedTo: ownerAssignedDetails,

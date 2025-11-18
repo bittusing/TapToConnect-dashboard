@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "CI=false tsc -b && vite build",
+    "build": "CI=false tsc -b --noEmit false && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:no-types": "vite build"
+    
   },
   "dependencies": {
     "antd": "^5.22.2",
