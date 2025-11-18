@@ -221,7 +221,7 @@ const SalesChannelChart = ({
     colors: ["#6366F1", "#0EA5E9", "#F97316"],
     dataLabels: {
       enabled: true,
-      formatter: (val) => `${val.toFixed(1)}%`,
+      formatter: (val) => `${Number(val).toFixed(1)}%`,
     },
     tooltip: {
       y: {

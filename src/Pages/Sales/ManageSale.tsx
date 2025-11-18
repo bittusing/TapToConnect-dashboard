@@ -442,9 +442,13 @@ const ManageSale = () => {
               placeholder="Select Affiliate Partner"
               showSearch
               optionFilterProp="label"
-              filterOption={(input, option) =>
-                (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-              }
+              filterOption={(input, option) => {
+                const labelText =
+                  option?.label !== undefined
+                    ? option?.label?.toString().toLowerCase() ?? ""
+                    : "";
+                return labelText.includes(input.toLowerCase());
+              }}
             >
               <Select.Option value="all" label="All Partners">
                 All Partners

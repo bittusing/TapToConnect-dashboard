@@ -85,7 +85,7 @@ export const requestWithdrawal = async (
 
   const response = await API.postAuthAPI<
     { data?: Record<string, unknown> } | Record<string, unknown>
-  >(END_POINT.WALLET_WITHDRAW, request);
+  >(request, END_POINT.WALLET_WITHDRAW, true);
 
   if (response.error) {
     throw new Error(response.error || "Failed to request withdrawal");
@@ -182,7 +182,7 @@ export const createManualCredit = async (
 
   const response = await API.postAuthAPI<
     { data?: Record<string, unknown> } | Record<string, unknown>
-  >(END_POINT.WALLET_MANUAL_CREDIT, request);
+  >(request, END_POINT.WALLET_MANUAL_CREDIT, true);
 
   if (response.error) {
     throw new Error(response.error || "Failed to create manual credit");

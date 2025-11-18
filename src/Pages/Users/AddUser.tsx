@@ -172,10 +172,12 @@ export default function AddUser() {
                 <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                   Status
                 </label>
-                <SwitcherTwo
+              <SwitcherTwo
                   id="isActive"
                   defaultChecked={formData.isActive}
-                  onChange={(checked) => setFormData((prev) => ({ ...prev, isActive: checked }))}
+                  onChange={(checked: boolean) =>
+                    setFormData((prev) => ({ ...prev, isActive: checked }))
+                  }
                 />
               </div>
             </div>

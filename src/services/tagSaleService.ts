@@ -297,9 +297,9 @@ export const updateTagSale = async (
 
   const response = await API.updateAuthAPI<any>(
     apiPayload,
-    `${END_POINT.QR_SALE_UPDATE}/${saleId}`, 
-    'true',
-    true,
+    saleId,
+    END_POINT.QR_SALE_UPDATE,
+    true
   );
 
   if (response.error) {

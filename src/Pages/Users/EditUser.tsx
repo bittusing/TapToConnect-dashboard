@@ -213,7 +213,9 @@ export default function EditUser() {
                 <SwitcherTwo
                   id="isActive"
                   defaultChecked={formData.isActive}
-                  onChange={(checked) => setFormData((prev) => ({ ...prev, isActive: checked }))}
+                  onChange={(checked: boolean) =>
+                    setFormData((prev) => ({ ...prev, isActive: checked }))
+                  }
                 />
               </div>
             </div>
