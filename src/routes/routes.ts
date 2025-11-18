@@ -10,6 +10,9 @@ import ManageSale from "../Pages/Sales/ManageSale";
 import AddSale from "../Pages/Sales/AddSale";
 import ViewSale from "../Pages/Sales/ViewSale";
 import EditSale from "../Pages/Sales/EditSale";
+import SalesReport from "../Pages/Sales/SalesReport";
+import MyWallet from "../Pages/Wallet/MyWallet";
+import WalletManagement from "../Pages/Wallet/WalletManagement";
 import Settings from "../Pages/Settings/Settings";
 
 const navRoutes = [
@@ -64,6 +67,18 @@ const navRoutes = [
   {
     path: "sales/:id/edit",
     component: EditSale,
+  },
+  {
+    path: "sales/report",
+    component: SalesReport,
+  },
+  {
+    path: "wallet",
+    component: MyWallet,
+  },
+  {
+    path: "wallet/management",
+    component: WalletManagement,
   },
   {
     path: "settings",

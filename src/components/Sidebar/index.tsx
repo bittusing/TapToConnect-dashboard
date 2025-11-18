@@ -7,6 +7,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FaQrcode, FaUsers } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi";
+import { MdBarChart } from "react-icons/md";
+import { FaWallet } from "react-icons/fa";
 import useScrollIndicator, {
   ScrollIndicatorButton,
 } from "../CommonUI/ScrollIndicator";
@@ -63,6 +65,26 @@ export const menuGroups: MenuGroup[] = [
         label: "Manage Sales",
         route: "/sales",
       },
+      {
+        icon: <MdBarChart className="text-2xl" />,
+        label: "Sales Report",
+        route: "/sales/report",
+      },
+    ],
+  },
+  {
+    name: "WALLET",
+    menuItems: [
+      {
+        icon: <FaWallet className="text-2xl" />,
+        label: "My Wallet",
+        route: "/wallet",
+      },
+      {
+        icon: <FaWallet className="text-2xl" />,
+        label: "Wallet Management",
+        route: "/wallet/management",
+      },
     ],
   },
   {
@@ -79,8 +101,47 @@ export const menuGroups: MenuGroup[] = [
 
 // Function to get role-based menu groups - QR Admin
 const getMenuGroups = (userRole: string | null): MenuGroup[] => {
-  if (userRole === "Super Admin") {
+  if (userRole === "Super Admin" || userRole === "Admin" || userRole === "Support Admin") {
     return menuGroups;
+  }
+  if (userRole === "Affiliate") {
+    return menuGroups
+      .filter((group) => group.name !== "SETUP")
+      .map((group) =>
+        group.name === "QR OPERATIONS"
+          ? {
+              ...group,
+              menuItems: group.menuItems.filter(
+                (item) => item.label !== "Generate Tags"
+              ),
+            }
+          : group
+      )
+      .filter((group) => group.menuItems.length > 0)
+      // and sale report menu item remove
+      .map((group) =>
+        group.name === "SALES"
+          ? {
+              ...group,
+              menuItems: group.menuItems.filter(
+                (item) => item.label !== "Sales Report"
+              ),
+            }
+          : group
+      )
+      .filter((group) => group.menuItems.length > 0)
+      // Remove Wallet Management for affiliates
+      .map((group) =>
+        group.name === "WALLET"
+          ? {
+              ...group,
+              menuItems: group.menuItems.filter(
+                (item) => item.label !== "Wallet Management"
+              ),
+            }
+          : group
+      )
+      .filter((group) => group.menuItems.length > 0);
   }
 
   // Non super-admin users still see operations menu but settings are optional

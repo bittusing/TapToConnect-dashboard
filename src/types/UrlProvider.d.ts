@@ -81,6 +81,11 @@ export interface EndPointType {
   QR_TAG_VERIFY: string;
   QR_SALE_DETAIL: string;
   QR_SALE_UPDATE: string;
+  WALLET_ME: string;
+  WALLET_WITHDRAW: string;
+  WALLET_USER: string;
+  WALLET_TRANSACTION: string;
+  WALLET_MANUAL_CREDIT: string;
 }
 
 export const BASE_URL: string;

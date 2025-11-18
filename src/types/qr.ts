@@ -47,6 +47,7 @@ export interface TagItem {
   shortCode: string;
   shortUrl?: string;
   qrUrl?: string;
+  stickerUrl?: string;
   status: TagStatus;
   batchName?: string;
   metadata?: Record<string, unknown>;
@@ -63,6 +64,7 @@ export interface TagVerifyResult {
   shortCode: string;
   shortUrl?: string;
   qrUrl?: string;
+  stickerUrl?: string;
   status?: TagStatus;
   batchName?: string;
   assignedTo?: string;
@@ -395,6 +397,79 @@ export interface TagSaleFilters {
   limit?: number;
   startDate?: string;
   endDate?: string;
+}
+
+// Wallet System Types
+export type WalletTransactionType = "credit" | "debit";
+export type WalletTransactionStatus = "pending" | "completed" | "cancelled";
+
+export interface WalletTransaction {
+  _id?: string;
+  user?: string | { _id: string; name?: string; email?: string };
+  sale?: string | { _id: string; shortCode?: string };
+  type: WalletTransactionType;
+  amount: number;
+  status: WalletTransactionStatus;
+  description?: string;
+  notes?: string;
+  balanceSnapshot?: number;
+  meta?: Record<string, unknown>;
+  createdBy?: string | { _id: string; name?: string };
+  approvedBy?: string | { _id: string; name?: string };
+  approvedAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface WalletCompletedSales {
+  totalCommission?: number;
+  totalSalesAmount?: number;
+  totalCost?: number;
+  totalOwnerCommission?: number;
+  cardsActivated?: number;
+}
+
+export interface WalletPendingSales {
+  pendingCommission?: number;
+  pendingSalesAmount?: number;
+  pendingCards?: number;
+}
+
+export interface WalletSummary {
+  completedSales?: WalletCompletedSales;
+  pendingSales?: WalletPendingSales;
+  totalWithdrawn?: number;
+  pendingWithdrawals?: number;
+  availableBalance?: number;
+}
+
+export interface WalletResponse {
+  summary?: WalletSummary;
+  transactions?: WalletTransaction[];
+  pagination?: {
+    total?: number;
+    page?: number;
+    limit?: number;
+    pages?: number;
+  };
+}
+
+export interface WithdrawRequest {
+  amount: number;
+  notes?: string;
+}
+
+export interface ManualCreditRequest {
+  userId: string;
+  amount: number;
+  description?: string;
+  notes?: string;
+  saleId?: string;
+}
+
+export interface UpdateTransactionRequest {
+  status: WalletTransactionStatus;
+  notes?: string;
 }
 
 

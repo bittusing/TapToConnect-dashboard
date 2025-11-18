@@ -162,7 +162,32 @@ const ViewTag = () => {
               "—"
             )}
           </Descriptions.Item>
-          <Descriptions.Item label="QR Code Image" span={2}>
+          <Descriptions.Item label="QR Sticker" >
+            {tag.stickerUrl ? (
+              <div className="space-y-2">
+                <Image
+                  src={tag.stickerUrl}
+                  alt={`QR Sticker for ${tag.shortCode}`}
+                  width={200}
+                  className="border rounded"
+                />
+                <div>
+                  <Button
+                    icon={<DownloadOutlined />}
+                    href={tag.stickerUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Download Sticker
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <Tag color="orange">QR Sticker not available</Tag>
+            )}
+          </Descriptions.Item>
+          <Descriptions.Item label="QR Code Image" >
             {tag.qrUrl ? (
               <div className="space-y-2">
                 <Image

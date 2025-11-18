@@ -104,4 +104,10 @@ export const END_POINT: EndPointType = {
   QR_TAG_VERIFY: "qr/tagVarify",
   QR_SALE_DETAIL: "qr/saleDetail",
   QR_SALE_UPDATE: "qr/saleUpdate",
+  // Wallet Endpoints
+  WALLET_ME: "v1/wallet/me",
+  WALLET_WITHDRAW: "v1/wallet/withdraw",
+  WALLET_USER: "v1/wallet",
+  WALLET_TRANSACTION: "v1/wallet/transaction",
+  WALLET_MANUAL_CREDIT: "v1/wallet/manual-credit",
 } as const;

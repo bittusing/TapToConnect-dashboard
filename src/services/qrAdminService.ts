@@ -272,6 +272,7 @@ const normalizeTagItem = (raw: Record<string, unknown>): TagItem => {
     shortCode: raw["shortCode"] as string,
     shortUrl: raw["shortUrl"] as string | undefined,
     qrUrl: raw["qrUrl"] as string | undefined,
+    stickerUrl: raw["stickerUrl"] as string | undefined,
     status,
     batchName: raw["batchName"] as string | undefined,
     metadata: (raw["metadata"] as Record<string, unknown>) ?? {},
