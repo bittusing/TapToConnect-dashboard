@@ -81,6 +81,7 @@ export interface EndPointType {
   QR_TAG_VERIFY: string;
   QR_SALE_DETAIL: string;
   QR_SALE_UPDATE: string;
+  QR_SALE_DELETE: string;
   WALLET_ME: string;
   WALLET_WITHDRAW: string;
   WALLET_USER: string;

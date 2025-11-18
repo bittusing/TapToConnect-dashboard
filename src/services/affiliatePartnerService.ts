@@ -9,6 +9,7 @@ import {
   TagItem,
   TagListResponse,
   TagListFilters,
+  TagStatus,
 } from "../types/qr";
 
 const sanitizeParams = (params: Record<string, unknown>) => {
@@ -548,7 +549,7 @@ export const getPartnerAssignedTags = async (
       shortCode: itemObj.shortCode as string,
       shortUrl: itemObj.shortUrl as string | undefined,
       qrUrl: itemObj.qrUrl as string | undefined,
-      status: (itemObj.status as TagStatus | undefined) ?? "generated",
+      status: ((itemObj.status as string | undefined) ?? "generated") as TagStatus,
       batchName: itemObj.batchName as string | undefined,
       assignedTo: itemObj.assignedTo,
       ownerAssignedTo: ownerAssignedDetails,

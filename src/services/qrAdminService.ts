@@ -279,7 +279,7 @@ const normalizeTagItem = (raw: Record<string, unknown>): TagItem => {
     owner,
     assignedTo: assignedDetails,
     ownerAssignedTo: ownerAssignedDetails,
-    createdAt: raw["createdAt"] as string | undefined,
+    createdAt: raw["createdAt"] as string | undefined, 
     updatedAt: raw["updatedAt"] as string | undefined,
     activatedAt:
       (activation?.["activatedAt"] as string | undefined) ??

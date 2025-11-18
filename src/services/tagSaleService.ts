@@ -28,27 +28,36 @@ const sanitizeParams = (params: Record<string, unknown>) => {
   return sanitized;
 };
 
-const normalizeSale = (itemObj: Record<string, unknown>): TagSale => ({
-  _id: itemObj._id as string | undefined,
-  tag: itemObj.tag as TagSale["tag"],
-  SalesPerson: itemObj.SalesPerson as TagSale["SalesPerson"],
-  owner: itemObj.owner as TagSale["owner"],
-  saleDate: itemObj.saleDate as string | undefined,
-  saleType: itemObj.saleType as SaleType | undefined,
-  salesPersonRole: itemObj.salesPersonRole as SalesPersonRole | undefined,
-  totalSaleAmount: itemObj.totalSaleAmount as number | undefined,
-  commisionAmountOfSalesPerson: itemObj.commisionAmountOfSalesPerson as number | undefined,
-  commisionAmountOfOwner: itemObj.commisionAmountOfOwner as number | undefined,
-  castAmountOfProductAndServices: itemObj.castAmountOfProductAndServices as number | undefined,
-  paymentStatus: itemObj.paymentStatus as PaymentStatus | undefined,
-  varificationStatus: itemObj.varificationStatus as VerificationStatus | undefined,
-  message: itemObj.message as TagSale["message"],
-  paymentImageOrScreenShot: itemObj.paymentImageOrScreenShot as string | null | undefined,
-  createdBy: itemObj.createdBy as TagSale["createdBy"],
-  updatedBy: itemObj.updatedBy as TagSale["updatedBy"],
-  createdAt: itemObj.createdAt as string | undefined,
-  updatedAt: itemObj.updatedAt as string | undefined,
-});
+const normalizeSale = (itemObj: Record<string, unknown>): TagSale => {
+  const paymentImage = itemObj.paymentImageOrScreenShot;
+  const normalizedPaymentImage =
+    typeof paymentImage === "string" ? paymentImage : undefined;
+
+  return {
+    _id: itemObj._id as string | undefined,
+    tag: itemObj.tag as TagSale["tag"],
+    SalesPerson: itemObj.SalesPerson as TagSale["SalesPerson"],
+    owner: itemObj.owner as TagSale["owner"],
+    saleDate: itemObj.saleDate as string | undefined,
+    saleType: itemObj.saleType as SaleType | undefined,
+    salesPersonRole: itemObj.salesPersonRole as SalesPersonRole | undefined,
+    totalSaleAmount: itemObj.totalSaleAmount as number | undefined,
+    commisionAmountOfSalesPerson:
+      itemObj.commisionAmountOfSalesPerson as number | undefined,
+    commisionAmountOfOwner:
+      itemObj.commisionAmountOfOwner as number | undefined,
+    castAmountOfProductAndServices:
+      itemObj.castAmountOfProductAndServices as number | undefined,
+    paymentStatus: itemObj.paymentStatus as PaymentStatus | undefined,
+    varificationStatus: itemObj.varificationStatus as VerificationStatus | undefined,
+    message: itemObj.message as TagSale["message"],
+    paymentImageOrScreenShot: normalizedPaymentImage,
+    createdBy: itemObj.createdBy as TagSale["createdBy"],
+    updatedBy: itemObj.updatedBy as TagSale["updatedBy"],
+    createdAt: itemObj.createdAt as string | undefined,
+    updatedAt: itemObj.updatedAt as string | undefined,
+  };
+};
 
 const extractEntityId = (value: TagSale["tag"] | TagSale["SalesPerson"] | TagSale["owner"] | string | undefined): string => {
   if (!value) return "";
@@ -213,6 +222,10 @@ export const createTagSale = async (
   const data = response.data || {};
   
   // Map API response back to TagSale format
+  const paymentImage = data.paymentImageOrScreenShot;
+  const normalizedPaymentImage =
+    typeof paymentImage === "string" ? paymentImage : undefined;
+
   const sale: TagSale = {
     _id: data._id as string | undefined,
     tag: data.tag as TagSale["tag"],
@@ -228,7 +241,7 @@ export const createTagSale = async (
     paymentStatus: data.paymentStatus as PaymentStatus | undefined,
     varificationStatus: data.varificationStatus as VerificationStatus | undefined,
     message: data.message as TagSale["message"],
-    paymentImageOrScreenShot: data.paymentImageOrScreenShot as string | null | undefined,
+    paymentImageOrScreenShot: normalizedPaymentImage,
     createdBy: data.createdBy as TagSale["createdBy"],
     updatedBy: data.updatedBy as TagSale["updatedBy"],
     createdAt: data.createdAt as string | undefined,
@@ -309,15 +322,14 @@ export const deleteTagSale = async (saleId: string): Promise<void> => {
     throw new Error("Sale ID is required");
   }
 
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  const response = await API.DeleteAuthAPI<{ message?: string }>(
+    saleId,
+    END_POINT.QR_SALE_DELETE,
+    true
+  );
 
-  const index = mockSales.findIndex((s) => s._id === saleId);
-
-  if (index === -1) {
-    throw new Error("Sale not found");
+  if (response.error) {
+    throw new Error(response.error || "Failed to delete sale");
   }
-
-  mockSales.splice(index, 1);
 };
 

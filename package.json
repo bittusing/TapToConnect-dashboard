@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:no-types": "vite build"
+    
   },
   "dependencies": {
     "antd": "^5.22.2",

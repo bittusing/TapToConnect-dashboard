@@ -4,3 +4,4 @@ export default {
       autoprefixer: {},
     },
   }
+  //  "build": "CI=false tsc -b && vite build",
